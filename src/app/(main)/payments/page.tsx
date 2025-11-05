@@ -7,7 +7,7 @@ const formatCurrency = (amount: number) => {
       currency: 'INR',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
-    }).format(amount);
+    }).format(amount).replace('₹', '₹ ');
 };
 
 export default function PaymentsPage() {

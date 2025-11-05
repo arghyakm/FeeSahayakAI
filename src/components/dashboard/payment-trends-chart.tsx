@@ -20,7 +20,7 @@ const chartConfig = {
     currency: 'INR',
     notation: 'compact',
     compactDisplay: 'short',
-  }).format(value).replace('T', 'K');
+  }).format(value).replace('₹', '₹ ');
 
 export function PaymentTrendsChart() {
   return (

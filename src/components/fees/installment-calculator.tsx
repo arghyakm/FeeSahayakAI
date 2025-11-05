@@ -17,7 +17,7 @@ const formatCurrency = (amount: number) => {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 2,
-  }).format(amount);
+  }).format(amount).replace('₹', '₹ ');
 };
 
 const formSchema = z.object({

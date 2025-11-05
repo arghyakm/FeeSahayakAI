@@ -1,10 +1,16 @@
 import type { FeeDetails, Payment, Announcement } from '@/types';
 
+const getNextDueDate = () => {
+  const date = new Date();
+  date.setDate(date.getDate() + 30);
+  return date.toISOString().split('T')[0];
+};
+
 export const feeDetails: FeeDetails = {
   total: 150000,
   paid: 75000,
   pending: 75000,
-  nextDueDate: '2024-08-15',
+  nextDueDate: getNextDueDate(),
   breakup: {
     tuition: 120000,
     library: 5000,

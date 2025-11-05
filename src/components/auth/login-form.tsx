@@ -6,8 +6,6 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -24,7 +22,7 @@ import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address.' }),
-  password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
+  password: z.string().min(1, { message: 'Password is required.' }),
 });
 
 export function LoginForm() {
@@ -42,23 +40,15 @@ export function LoginForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    try {
-      await signInWithEmailAndPassword(auth, values.email, values.password);
+    // This is a mock login. In a real app, you'd call Firebase.
+    setTimeout(() => {
       toast({
         title: 'Login Successful',
         description: 'Welcome back!',
       });
       router.push('/dashboard');
-    } catch (error) {
-      console.error('Login error', error);
-      toast({
-        variant: 'destructive',
-        title: 'Login Failed',
-        description: 'Invalid credentials. Please try again.',
-      });
-    } finally {
-        setIsLoading(false);
-    }
+      setIsLoading(false);
+    }, 1000);
   }
 
   return (

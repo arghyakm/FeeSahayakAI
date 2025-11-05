@@ -6,8 +6,6 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -42,27 +40,15 @@ export function RegisterForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    try {
-      await createUserWithEmailAndPassword(auth, values.email, values.password);
+    // This is a mock registration.
+    setTimeout(() => {
       toast({
         title: 'Account Created',
         description: "You've successfully signed up!",
       });
       router.push('/dashboard');
-    } catch (error: any) {
-        console.error('Registration error', error);
-        let description = 'An unexpected error occurred. Please try again.';
-        if (error.code === 'auth/email-already-in-use') {
-            description = 'This email is already in use. Please log in instead.';
-        }
-      toast({
-        variant: 'destructive',
-        title: 'Registration Failed',
-        description,
-      });
-    } finally {
       setIsLoading(false);
-    }
+    }, 1000);
   }
 
   return (

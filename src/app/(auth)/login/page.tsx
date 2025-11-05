@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { LoginForm } from '@/components/auth/login-form';
@@ -21,7 +22,7 @@ export default function LoginPage() {
         )}
         <CardTitle className="font-headline text-3xl mt-4">FeeSahayak AI</CardTitle>
         <CardDescription className="text-base">
-          Namaste! Apna account login karein.
+          Namaste! This is a demo. Log in to continue.
         </CardDescription>
       </CardHeader>
       <CardContent>

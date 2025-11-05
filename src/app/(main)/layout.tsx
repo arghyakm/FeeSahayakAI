@@ -1,15 +1,28 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/use-auth';
 import { AppSidebar } from '@/components/layout/sidebar';
 import { AppHeader } from '@/components/layout/header';
 import { Loader2 } from 'lucide-react';
 
+// Mock user for demonstration purposes
+const mockUser = {
+  email: 'student@example.com'
+};
+
 export default function MainLayout({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth();
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  useEffect(() => {
+    // Simulate auth loading
+    setTimeout(() => {
+      setUser(mockUser);
+      setLoading(false);
+    }, 500);
+  }, []);
 
   useEffect(() => {
     if (!loading && !user) {

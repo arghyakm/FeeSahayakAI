@@ -1,17 +1,31 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/use-auth';
 import { AppSidebar } from '@/components/layout/sidebar';
 import { AppHeader } from '@/components/layout/header';
 import { Loader2, ShieldAlert } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const ADMIN_EMAIL = 'admin@feesahayak.ai'; 
 
+// Mock user for demonstration purposes
+const mockUser = {
+  email: 'admin@feesahayak.ai'
+};
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth();
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  useEffect(() => {
+    // Simulate auth loading
+    setTimeout(() => {
+      setUser(mockUser);
+      setLoading(false);
+    }, 500);
+  }, []);
 
   useEffect(() => {
     if (!loading && !user) {

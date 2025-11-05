@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { RegisterForm } from '@/components/auth/register-form';
@@ -21,7 +22,7 @@ export default function RegisterPage() {
         )}
         <CardTitle className="font-headline text-3xl mt-4">Create an Account</CardTitle>
         <CardDescription className="text-base">
-          Naya account banayein.
+          This is a demo. Register to continue.
         </CardDescription>
       </CardHeader>
       <CardContent>

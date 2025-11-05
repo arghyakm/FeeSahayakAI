@@ -24,8 +24,6 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useAuth } from '@/hooks/use-auth';
-import { auth } from '@/lib/firebase';
-import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -40,12 +38,12 @@ const mobileNavItems = [
   ];
 
 export function AppHeader() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const router = useRouter();
   const avatar = PlaceHolderImages.find((img) => img.id === 'user-avatar');
 
-  const handleLogout = async () => {
-    await signOut(auth);
+  const handleLogout = () => {
+    logout();
     router.push('/login');
   };
 

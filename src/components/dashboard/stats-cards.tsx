@@ -1,3 +1,4 @@
+'use client';
 import { feeDetails } from '@/lib/data';
 import {
   Card,

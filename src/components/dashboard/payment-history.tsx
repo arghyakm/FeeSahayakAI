@@ -1,3 +1,4 @@
+'use client';
 import { paymentHistory } from '@/lib/data';
 import {
   Card,

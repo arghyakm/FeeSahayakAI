@@ -16,11 +16,10 @@ const chartConfig = {
 
   const formatCurrency = (value: number) =>
   new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
+    style: 'decimal',
     notation: 'compact',
     compactDisplay: 'short',
-  }).format(value).replace('₹', '₹ ');
+  }).format(value);
 
 export function PaymentTrendsChart() {
   return (

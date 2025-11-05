@@ -10,11 +10,10 @@ import { IndianRupee, CalendarClock } from 'lucide-react';
 
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
+    style: 'decimal',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(amount).replace('₹', '₹ ');
+  }).format(amount);
 };
 
 export function StatsCards() {

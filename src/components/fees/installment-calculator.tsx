@@ -14,14 +14,14 @@ import { feeDetails } from '@/lib/data';
 
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
+    style: 'decimal',
     minimumFractionDigits: 2,
-  }).format(amount).replace('₹', '₹ ');
+    maximumFractionDigits: 2,
+  }).format(amount);
 };
 
 const formSchema = z.object({
-  amount: z.number().min(1000, 'Amount must be at least ₹1,000'),
+  amount: z.number().min(1000, 'Amount must be at least 1,000'),
   installments: z.number().min(2, 'At least 2 installments').max(12, 'Maximum 12 installments'),
 });
 
@@ -57,7 +57,7 @@ export function InstallmentCalculator() {
               name="amount"
               render={({ field: { onChange, ...rest } }) => (
                 <FormItem>
-                  <FormLabel>Fee Amount (₹)</FormLabel>
+                  <FormLabel>Fee Amount</FormLabel>
                   <FormControl>
                     <Input type="number" onChange={e => onChange(parseInt(e.target.value, 10))} {...rest}/>
                   </FormControl>
